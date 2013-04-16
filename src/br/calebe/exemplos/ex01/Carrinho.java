@@ -34,5 +34,30 @@ public class Carrinho {
 		}
 		return menor;
 	}
+        
+        public boolean pertence(Produto proc){
+            if(produtos.isEmpty())
+                    return false;
+            for(Produto p:produtos){
+                if(p.equals(proc))
+                    return true;
+            }       
+            return false;
+        }
+        
+        public boolean remove(Produto proc){
+            if(this.pertence(proc)){
+                produtos.remove(proc);
+                return true;
+            }
+            return false;
+        }
+        
+        public double precoTotal(){
+            double soma=0;
+            for(Produto p:produtos)
+                soma += p.getPreco();
+           return soma;           
+        }
 
 }

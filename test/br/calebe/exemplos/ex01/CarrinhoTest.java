@@ -68,4 +68,44 @@ public void criandoCarrinho() {
                 carrinho.add(p2);
                 assertTrue(carrinho.printAll());
         }
+        
+	@Test
+        public void pertenceVazio() throws CarrinhoVazioExpected{
+                Produto p = new Produto("DP: Provas Finais em uma semana", 1403.00);
+                assertFalse(carrinho.pertence(p));
+        }
+        
+        @Test
+        public void pertenceNVazio(){
+                Produto p = new Produto("DP: Provas Finais em uma semana", 1403.00);
+                carrinho.add(p);
+                assertTrue(carrinho.pertence(p));
+        }
+
+        @Test
+        public void removeNPertence(){
+                Produto p = new Produto("DP: Provas Finais em uma semana", 1403.00);
+                assertFalse(carrinho.remove(p));
+        }
+                
+        @Test
+        public void removePertence(){
+                Produto p = new Produto("DP: Provas Finais em uma semana", 1403.00);
+                carrinho.add(p);
+                assertTrue(carrinho.remove(p));
+        }
+        
+        @Test
+        public void precoTotalVazio(){
+                assertEquals(0, carrinho.precoTotal(),0.1);
+        }
+        
+        @Test
+        public void precoTotalNVazio(){
+                Produto p1 = new Produto("DP: Provas em uma semana", 1403.00);
+                carrinho.add(p1);
+                Produto p2 = new Produto("DP: Provas Finais em uma semana", 1403.00);
+                carrinho.add(p2);
+                assertEquals(p1.getPreco()+p2.getPreco(), carrinho.precoTotal(),0.1);
+        }
 }
