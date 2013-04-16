@@ -5,26 +5,34 @@ import java.util.List;
 
 public class Carrinho {
 
-    private List<Produto> produtos;
+	private List<Produto> produtos;
 
-    public Carrinho() {
-        produtos = new ArrayList<>();
-    }
+	public Carrinho() {
+		produtos = new ArrayList<>();
+	}
 
-    public void add(Produto produto) {
-        produtos.add(produto);
-    }
-
-    public Produto menorProduto() throws CarrinhoVazioExpected {
-        if (produtos.isEmpty()) {
-            throw new CarrinhoVazioExpected();
+	public void add(Produto produto) {
+		produtos.add(produto);
+	}
+  
+        public boolean printAll(){
+                int i = 0;
+                for(Produto p:produtos){
+                    i++;
+                    System.out.println(p.getNome());
+                }
+                return i == produtos.size();
         }
-        Produto menor = produtos.get(0);
-        for (Produto produto : produtos) {
-            if (produto.getPreco() < menor.getPreco()) {
-                menor = produto;
-            }
-        }
-        return menor;
-    }
+
+	public Produto menorProduto() throws CarrinhoVazioExpected {
+		if (produtos.isEmpty())
+			throw new CarrinhoVazioExpected();
+		Produto menor = produtos.get(0);
+		for (Produto produto : produtos) {
+			if (produto.getPreco() < menor.getPreco())
+				menor = produto;
+		}
+		return menor;
+	}
+
 }
